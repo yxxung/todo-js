@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* tailwindcss의 group-* 수정자를 사용하면 css 스타일을 대체할 수 있다. */
+      /* div[name="todo"]:hover button[name="delete"] {
+        display: block;
+      } */
+
+
+      /* tailwindcss의 peer-* 수정자를 사용하면 css 스타일을 대체할 수 있다. */
+      /* 가짜 체크박스 스타일 */
+      /* span[name="check"]:has(+ input[name="hidden-check"]:checked) {
+        background-color: #84cc16;
+        border-color: #84cc16;
+        color: white;
+      } */
+
+      /* tailwindcss의 peer-* 수정자를 사용하면 css 스타일을 대체할 수 있다. */
+      /* 취소선 스타일 */
+      /* input[name="hidden-check"]:checked ~ span[name="viewer"] {
+        text-decoration: line-through;
+        color: #78716c;
+      } */
+
+      /* tailwindcss의 peer-* 수정자를 사용하면 css 스타일을 대체할 수 있다. */
+      /* #todo:invalid + #reset {
+        display: none;
+      }
+      #todo:valid + #reset {
+        display: block;
+      } */
+    </style>
+  </head>
+  <body>
+    <!-- app[s] -->
+    <div class="flex items-center justify-center w-screen h-screen font-medium">
+      <div
+        class="flex flex-grow items-center justify-center bg-gray-900 h-full"
+      >
+        <div
+          class="max-w-full p-8 bg-gray-800 rounded-lg shadow-lg w-96 text-gray-200"
+        >
+          <div class="flex items-center mb-6">
+            <svg
+              class="h-8 w-8 text-indigo-500 stroke-current"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+              />
+            </svg>
+            <h4 class="font-semibold ml-3 text-lg">Todo List</h4>
+          </div>
+          <!-- todo[s] -->
+          <div class="group">
+            <!-- todo label[s] -->
+            <label
+              class="flex items-center h-10 px-2 rounded cursor-pointer hover:bg-gray-900"
+            >
+							<!-- check[s] -->
+              <!-- check[e] -->
+              <!-- hidden check[s] -->
+              <!-- peer: 형제 요소들이 이 input의 상태를 추적하게 됨 -->
+              <!-- peer가 붙은 것은 반드시 최상단에 있어야 한다. -->
+              <input name="hidden-check" class="hidden peer" type="checkbox" />
+              <!-- hidden check[e] -->
+              <span
+                name="check"
+                class="peer-checked:bg-green-500 peer-checked:border-green-500 peer-checked:text-white flex items-center justify-center w-5 h-5 text-transparent border-2 border-gray-500 rounded-full"
+              >
+                <svg
+                  class="w-4 h-4 fill-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </span>
+               <!-- check[e] -->
+              <!-- content[s] -->
+              <span class="select-none mx-4 text-sm w-full peer-checked:line-through" name="viewer">
+								Trim the verge.
+							</span>
+              <!-- content[e] -->
+              <!-- delete[s] -->
+              <button name="delete" class="hidden group-hover:block">
+                <svg
+                  class="w-5 h-5 text-gray-400 fill-current mx-1"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  viewBox="0 0 27.965 27.965"
+                  xml:space="preserve"
+                >
+                  <path
+                    d="M13.98,0C6.259,0,0,6.261,0,13.983c0,7.721,6.259,13.982,13.98,13.982c7.725,0,13.985-6.262,13.985-13.982
+              C27.965,6.261,21.705,0,13.98,0z M19.992,17.769l-2.227,2.224c0,0-3.523-3.78-3.786-3.78c-0.259,0-3.783,3.78-3.783,3.78
+              l-2.228-2.224c0,0,3.784-3.472,3.784-3.781c0-0.314-3.784-3.787-3.784-3.787l2.228-2.229c0,0,3.553,3.782,3.783,3.782
+              c0.232,0,3.786-3.782,3.786-3.782l2.227,2.229c0,0-3.785,3.523-3.785,3.787C16.207,14.239,19.992,17.769,19.992,17.769z"
+                  />
+                </svg>
+              </button>
+              <!-- delete[e] -->
+            </label>
+            <!-- todo label[e] -->
+          </div>
+          <!-- todo[e] -->
+          <!-- form[s] -->
+          <div class="flex items-center w-full mt-2">
+						<!-- submit button[s] -->
+            <button id="submit" class="h-8 px-2 text-sm font-medium rounded">
+              <svg
+                class="w-5 h-5 text-gray-400 fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                />
+              </svg>
+            </button>
+						<!-- submit button[e] -->
+            <!-- todo input[s] -->
+            <!-- peer 요소인데 todo라고 별칭까지 붙여줌 -->
+            <input
+              class="peer/todo flex-grow h-8 ml-4 bg-transparent focus:outline-none font-medium"
+              type="text"
+              id="todo"
+              name="todo"
+              required
+              placeholder="add a new todo"
+            />
+            <!-- todo input[e] -->
+            <!-- reset button[s] -->
+            <button
+              class="peer-invalid/todo:hidden h-8 px-2 text-sm font-medium rounded"
+            >
+              <svg
+                class="w-5 h-5 text-gray-400 fill-current"
+                viewBox="0 0 1920 1920"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  xmlns="http://www.w3.org/2000/svg"
+                  d="M960 0v213.333c411.627 0 746.667 334.934 746.667 746.667S1371.627 1706.667 960 1706.667 213.333 1371.733 213.333 960c0-197.013 78.4-382.507 213.334-520.747v254.08H640V106.667H53.333V320h191.04C88.64 494.08 0 720.96 0 960c0 529.28 430.613 960 960 960s960-430.72 960-960S1489.387 0 960 0"
+                  fill-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <!-- reset button[e] -->
+          </div>
+          <!-- form[e] -->
+        </div>
+      </div>
+    </div>
+    <!-- app[e] -->
+  </body>
+</html>
